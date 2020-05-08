@@ -21,6 +21,7 @@ while (!(line = in.readLine()).isEmpty()) {           //For stdin, use "".
 //while ((line = in.readLine()).length() != 0) {
   System.out.println(line)
 }     
+in.close();
 
 Scanner sc = new Scanner(System.in);
 String sor;
@@ -36,6 +37,7 @@ String line;
 while ((line = in.readLine()) != null) {             //For file, use null.
   System.out.println(line)
 }    
+in.close();
 
 Scanner sc = new Scanner(new FileReader("C:\\Users\\e13406\\Desktop\\test.txt"));
 while (sc.hasNextLine()) {	
@@ -43,3 +45,16 @@ while (sc.hasNextLine()) {
   System.out.println(sor);
 }
 sc.close();
+
+
+
+
+需要手动关闭的资源，如占用端口、文件句柄等。
+
+原因：
+       这些是jvm权限范围外的系统资源，gc无法清理，只能依靠调用close()方法进行清理。
+
+举例：
+      端口占用，一般发生在网络连接上，比如HttpClient的http请求就要每次关闭response，比如连接数据库的连接每次也要close()，不然该端口一直被进程占用，别的程序想用该端口，就会报错端口已被占用，或者系统的端口被占用完而报错。
+
+       文件句柄占用，当用io流读写文件时，该进程会打开该文件，即占用该文件的句柄，如果最后不释放，别的进程要想写该文件，就会报错该文件已被别的进程占用，相信大家都熟悉这个错误。又或者每打开一个文件后都不释放资源，到一定程度，程序会报错too many open files。
