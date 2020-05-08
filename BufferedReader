@@ -1,0 +1,45 @@
+# list 
+
+//List<String> list = new ArrayList<String>();
+List<String> list = new ArrayList<>();
+list.add("a");
+list.get(0);
+list.remove(0);
+list.remove(line);
+
+
+//BufferedReader是先把数据读到缓存区然后在写到硬盘里
+//Scanner是直接往硬盘写数据
+//BufferedReader的效率比Scanner高
+
+# Read from stdin
+
+BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+String line;
+while (!(line = in.readLine()).isEmpty()) {           //For stdin, use "".
+//while (!("".equals(line = in.readLine()))) {
+//while ((line = in.readLine()).length() != 0) {
+  System.out.println(line)
+}     
+
+Scanner sc = new Scanner(System.in);
+String sor;
+while (!(sor = sc.nextLine()).isEmpty()) {		
+  System.out.println(sor);
+}
+sc.close();
+
+# Read from file
+
+BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\11111\\Desktop\\test.txt"));
+String line;
+while ((line = in.readLine()) != null) {             //For file, use null.
+  System.out.println(line)
+}    
+
+Scanner sc = new Scanner(new FileReader("C:\\Users\\e13406\\Desktop\\test.txt"));
+while (sc.hasNextLine()) {	
+  String sor = sc.nextLine();
+  System.out.println(sor);
+}
+sc.close();
